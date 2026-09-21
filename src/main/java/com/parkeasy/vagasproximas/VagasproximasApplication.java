@@ -1,13 +1,13 @@
-package com.vaga.parkeasy;
+package com.parkeasy.vagasproximas;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ParkeasyApplication {
+public class VagasproximasApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ParkeasyApplication.class, args);
+		SpringApplication.run(VagasproximasApplication.class, args);
 	}
 
 }

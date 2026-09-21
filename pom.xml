@@ -8,10 +8,10 @@
 		<version>4.1.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.vaga</groupId>
-	<artifactId>parkeasy</artifactId>
+	<groupId>com.parkeasy</groupId>
+	<artifactId>vagasproximas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>parkeasy</name>
+	<name>vagasproximas</name>
 	<description/>
 	<url/>
 	<licenses>

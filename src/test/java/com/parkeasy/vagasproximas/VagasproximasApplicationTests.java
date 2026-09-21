@@ -1,14 +1,13 @@
-package com.vaga.parkeasy;
+package com.parkeasy.vagasproximas;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ParkeasyApplicationTests {
+class VagasproximasApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
 
 }
-
