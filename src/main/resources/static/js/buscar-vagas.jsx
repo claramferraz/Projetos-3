@@ -201,6 +201,7 @@ function BuscaVagas() {
               ? 'Desativar localização em tempo real'
               : 'Ativar localização em tempo real'}
           </button>
+          <a href="/vagas/pesquisar-endereco" className="botao" style={{ textDecoration: 'none' }}>Pesquisar Vagas por Endereço</a>
         </div>
       </form>
 

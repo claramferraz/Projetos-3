@@ -72,6 +72,11 @@ public class VagasController {
         @RequestParam(defaultValue = "500") Double raio) {
         return service.buscarProximas(lat, lon, raio);
     }
+
+    @GetMapping("/vagas/pesquisar-endereco")
+    public String paginaPesquisaEndereco() {
+    return "pesquisar-endereco";
+}
 }
 
     

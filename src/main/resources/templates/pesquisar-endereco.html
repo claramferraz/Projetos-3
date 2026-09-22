@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ParkEasy - Pesquisa por Endereço</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Passion+One:wght@700;900&display=swap" rel="stylesheet">
+
+  <!-- Estilos do Mapa Leaflet da História 3 -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+  <main class="hero">
+    <header class="hero__topo">
+      <h1 class="logo">ParkEasy</h1>
+      <p class="slogan">Pesquisar Vagas Próximas por Endereço</p>
+    </header>
+
+    <!-- Formulário de Busca da História 3 -->
+    <div class="busca" style="display: flex; gap: 10px; margin-bottom: 1.5rem;">
+      <input type="text" id="campoEndereco" class="campo__input" placeholder="Digite o endereço (ex: Rua do Futuro, Boa Viagem, Rua do Sol)" style="flex: 1;" />
+      <button onclick="buscarVagas()" class="botao botao--ativo">Pesquisar</button>
+    </div>
+
+    <!-- Status e mensagens de erro -->
+    <div id="status" class="status"></div>
+
+    <!-- Layout com Mapa e Lista de Resultados -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+      <!-- Container do Mapa Leaflet -->
+      <div id="mapa" style="height: 400px; border-radius: 16px; overflow: hidden; border: 1px solid #3a3a3a;"></div>
+
+      <!-- Lista de Vagas Retornadas -->
+      <div>
+        <h2 style="font-family: var(--fonte-titulo); font-size: 1.5rem; margin-bottom: 1rem;">Vagas Encontradas</h2>
+        <ul id="listaVagas" class="lista" style="display: flex; flex-direction: column; gap: 10px;"></ul>
+      </div>
+    </div>
+  </main>
+
+  <!-- Script do Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // Inicializa o mapa centralizado em Recife
+    const mapa = L.map('mapa').setView([-8.0476, -34.8770], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap'
+    }).addTo(mapa);
+
+    let marcadores = [];
+
+    async function buscarVagas() {
+      const endereco = document.getElementById('campoEndereco').value;
+      const statusDiv = document.getElementById('status');
+      const listaDiv = document.getElementById('listaVagas');
+
+      statusDiv.innerText = "Buscando...";
+      listaDiv.innerHTML = "";
+      
+      // Limpa marcadores anteriores
+      marcadores.forEach(m => mapa.removeLayer(m));
+      marcadores = [];
+
+      if (!endereco.trim()) {
+        statusDiv.innerText = "Por favor, informe um endereço.";
+        return;
+      }
+
+      try {
+        const response = await fetch(`/api/vagas/pesquisar?endereco=${encodeURIComponent(endereco)}`);
+        
+        if (!response.ok) {
+          const erro = await response.text();
+          statusDiv.innerHTML = `<span class="status--erro">${erro}</span>`;
+          return;
+        }
+
+        const vagas = await response.json();
+        statusDiv.innerText = `Encontrada(s) ${vagas.length} vaga(s) próxima(s).`;
+
+        if (vagas.length === 0) {
+          listaDiv.innerHTML = "<li>Nenhuma vaga disponível encontrada para esta localização.</li>";
+          return;
+        }
+
+        // Adiciona marcadores no mapa e itens na lista
+        vagas.forEach(vaga => {
+          const marker = L.marker([vaga.latitude, vaga.longitude])
+            .addTo(mapa)
+            .bindPopup(`<b>${vaga.descricao || vaga.endereco}</b><br>Status: Disponível`);
+          marcadores.push(marker);
+
+          const item = document.createElement('li');
+          item.className = 'vaga';
+          item.innerHTML = `
+            <span class="vaga__nome">${vaga.descricao || vaga.endereco}</span>
+            <span class="vaga__endereco">Lat: ${vaga.latitude} | Lon: ${vaga.longitude}</span>
+          `;
+          listaDiv.appendChild(item);
+        });
+
+        // Centraliza o mapa na primeira vaga encontrada
+        if (vagas.length > 0) {
+          mapa.setView([vagas[0].latitude, vagas[0].longitude], 14);
+        }
+
+      } catch (err) {
+        statusDiv.innerHTML = '<span class="status--erro">Erro ao comunicar com o servidor.</span>';
+      }
+    }
+  </script>
+</body>
+</html>
