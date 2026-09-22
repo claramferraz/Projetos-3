@@ -20,3 +20,8 @@ Tecnologias usadas no desenvolvimento: Java, Spring Boot, React, PostgreeSQL, No
 * 🔗 Figma:  **https://www.figma.com/design/0zYZ7hXAx9qSK5j6xzSoV3/Trabalho-POO?node-id=0-1&t=hdKBW8uIVpm7rzWn-1**  
 * 🔗 Screencast: **https://youtu.be/bzjy19k4I-w?is=Q7nv4KDybstOR952**
 ---
+
+# Entrega 2
+
+* 🔗 Screencast: **https://youtu.be/ods2P-Mu_C8**
+---
