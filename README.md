@@ -47,6 +47,6 @@ Tecnologias usadas no desenvolvimento: Java, Spring Boot, React, PostgreeSQL, No
 
 *(Utilização do GitHub Issues/Projects em todas as semanas da entrega)*
 
-![Print do GitHub Issues/Bug Tracker](https://drive.google.com/file/d/1gMdr86vS_1GmSIoHFRYpB5N3kzjmAGWq/view?usp=sharing)  
+![Print do GitHub Issues/Bug Tracker](docs/images/bug-tracker.png)
 
 ---
