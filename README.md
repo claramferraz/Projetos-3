@@ -23,5 +23,30 @@ Tecnologias usadas no desenvolvimento: Java, Spring Boot, React, PostgreeSQL, No
 
 # Entrega 2
 
-* 🔗 Screencast: **https://youtu.be/ods2P-Mu_C8**
+## 📜 Histórias Implementadas
+
+> 📌 **História de Usuário 02 — Visualizar vagas próximas no mapa**  
+> **Como** motorista,  
+> **Quero** visualizar no mapa as vagas disponíveis próximas à minha localização atual,  
+> **Para** encontrar rapidamente onde estacionar.  
+
+> 📌 **História de Usuário 03 — Pesquisar vagas por endereço**  
+> **Como** motorista,  
+> **Quero** pesquisar vagas próximas a um endereço específico,  
+> **Para** planejar onde estacionar antes de chegar ao meu destino.
+
+---
+
+## 🎥 Screencasts (YouTube)
+
+* 🔗 **Uso do Sistema (Spring Boot Rodando):** [Assistir Vídeo do Uso do Sistema](https://youtu.be/ods2P-Mu_C8)
+
+---
+
+## 🐛 Issue / Bug Tracker (GitHub)
+
+*(Utilização do GitHub Issues/Projects em todas as semanas da entrega)*
+
+![Print do GitHub Issues/Bug Tracker](https://drive.google.com/file/d/1gMdr86vS_1GmSIoHFRYpB5N3kzjmAGWq/view?usp=sharing)  
+
 ---
